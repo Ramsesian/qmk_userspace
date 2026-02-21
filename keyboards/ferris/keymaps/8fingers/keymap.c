@@ -9,7 +9,12 @@ enum layer_names {
 };
 
 //lets you make shortcuts for keys to make things a bit more readable.
+//layer switches
 #define BOOT MO(_BOOT)
+
+//shortcuts
+#define WINLEFT G(S(KC_LEFT)) //super-shift-left
+#define WINRGHT G(S(KC_RIGHT)) //super-shift-right
 
 //Pro Micro With The Bootloader ATmega32U4 5V/16MHz Module Controller Mega32U4 Leonardo For Arduino
 
@@ -17,11 +22,11 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_TALON] = LAYOUT_split_3x5_2(
     //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-         KC_F13,  KC_F14,  KC_F15,  KC_F16, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+        XXXXXXX,  KC_F14,  KC_F15,  KC_F16, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-         KC_F17,  KC_F18,  KC_F19,  KC_F20, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-         KC_F21,  KC_F22,  KC_F23,  KC_F24, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+      KC_LALT, S(KC_TAB),  KC_TAB,  KC_F24, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
                                       BOOT, XXXXXXX,                XXXXXXX, XXXXXXX
     //                           `-----------------'              `-----------------'
