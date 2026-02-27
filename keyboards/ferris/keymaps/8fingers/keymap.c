@@ -9,6 +9,7 @@ enum layer_names {
   _BOOT,
 };
 
+
 //lets you make shortcuts for keys to make things a bit more readable.
 //layer switches
 #define BOOT MO(_BOOT)
@@ -24,9 +25,28 @@ enum layer_names {
 //alt try combos
 //use combos those are far superior
 
+enum combos {
+    SD_SPACE,
+    DF_ENTER,
+    KL_BKSP
+};
 
+// define combo sequences here
+/* lets try this again. lets try a vertical combo so I can hit it with one key.
+then lets try with one on both side
+then lets try replacing an uncommon key with it.
+check out the config for it as well
+*/
+const uint16_t PROGMEM space_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM backspace_combo[] = {KC_K, KC_L, COMBO_END};
 
-
+// when you hit a combo sequence you output X 
+combo_t key_combos[] = {
+    [SD_SPACE] = COMBO(space_combo, KC_SPACE),
+    [DF_ENTER] = COMBO(enter_combo, KC_ENTER),
+    [KL_BKSP] = COMBO(backspace_combo, KC_BACKSPACE)
+};
 //Pro Micro With The Bootloader ATmega32U4 5V/16MHz Module Controller Mega32U4 Leonardo For Arduino
 
 /*
