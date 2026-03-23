@@ -4,17 +4,17 @@
 //You have to put down the names as you'd expect them to appear, no layer can be named the same thing.
 //That's because secretly it's going first enum: 0, second enum: 1, etc.
 enum layer_names {
-  _TALON,
-  _QWERTY,
-  _BOOT,
+    _QWERTY,
+    _TALON,
+    _BOOT,
 };
 
 
 //lets you make shortcuts for keys to make things a bit more readable.
 //layer switches
 #define BOOT MO(_BOOT)
-#define QWERTY TG(_QWERTY)
-
+#define TALONM MO(_TALON)
+#define TALONT TG(_TALON)
 
 //shortcuts
 #define WINLEFT G(S(KC_LEFT)) //super-shift-left
@@ -67,7 +67,8 @@ in your keyboard you use TD(TAP_DANCE_NAME)
 */
 
 enum tap_dance_actions {
-    QESC
+    QESC,
+
 };
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -79,18 +80,6 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [_TALON] = LAYOUT_split_3x5_2(
-    //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_F18, XXXXXXX,
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX, KC_ENTER,MS_WHLD, MS_WHLU,  KC_F17, //MS WHLD/WHLU refer to mouse wheel down/up respectively
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-      KC_LALT, S(KC_TAB),  KC_TAB,  XXXXXXX, XXXXXXX,                XXXXXXX, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-                                      BOOT, XXXXXXX,                QWERTY, XXXXXXX
-    //                           `-----------------'              `-----------------'
-    ),
-
     [_QWERTY] = LAYOUT_split_3x5_2(
     //,--------+------------+------------+---------+---------.              ,--------+--------+---------------+--------------+---------------.
        TD(QESC),        KC_W,        KC_E,     KC_R,     KC_T,                   KC_Y,    KC_U,           KC_I,          KC_O,           KC_P,
@@ -99,9 +88,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+------------+------------+---------+---------|              |--------+--------+---------------+--------------+---------------|
            KC_B, CTL_T(KC_Z), ALT_T(KC_X),     KC_C,     KC_V,                   KC_N,    KC_M, ALT_T(KC_COMM), CTL_T(KC_DOT),       KC_QUOTE,
     //|--------+------------+------------+---------+---------|              |--------+--------+---------------+--------------+---------------|
-                                           KC_SPACE, KC_ENTER,                _______, KC_BACKSPACE
+                                               BOOT,  XXXXXXX,                  TALONM, TALONT
     //                                   `-------------------'              `-----------------'
 
+    ),
+
+    [_TALON] = LAYOUT_split_3x5_2(
+    //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
+        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_F18, XXXXXXX,
+    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
+      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX, KC_ENTER,MS_WHLD, MS_WHLU,  KC_F17, //MS WHLD/WHLU refer to mouse wheel down/up respectively
+    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
+      KC_LALT, S(KC_TAB),  KC_TAB, XXXXXXX, XXXXXXX,                XXXXXXX, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
+    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
+                                   XXXXXXX, XXXXXXX,                _______, _______
+    //                           `-----------------'              `-----------------'
     ),
 
     [_BOOT] = LAYOUT_split_3x5_2(
