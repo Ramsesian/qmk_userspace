@@ -5,8 +5,8 @@
 //That's because secretly it's going first enum: 0, second enum: 1, etc.
 enum layer_names {
     _QWERTY,
-    _TALON,
-    _BOOT,
+    _SYMBOL,
+    _TALON
 };
 
 
@@ -15,6 +15,8 @@ enum layer_names {
 #define BOOT MO(_BOOT)
 #define TALONM MO(_TALON)
 #define TALONT TG(_TALON)
+#define SYMBOLO OSL(_SYMBOL)
+#define SYMBOLT TG(_SYMBOL)
 
 //shortcuts
 #define WINLEFT G(S(KC_LEFT)) //super-shift-left
@@ -29,6 +31,7 @@ enum combos {
     SD_SPACE,
     DF_ENTER,
     KL_BKSP,
+    NUM_BKSP,
     SV_SUPER
 };
 
@@ -41,6 +44,7 @@ check out the config for it as well
 const uint16_t PROGMEM enter_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM space_combo[] = {KC_E, KC_D, COMBO_END};
 const uint16_t PROGMEM backspace_combo[] = {KC_I, KC_K, COMBO_END};
+const uint16_t PROGMEM backspace_num_combo[] = {KC_8, KC_5, COMBO_END};
 const uint16_t PROGMEM super_combo[] = {KC_S, KC_C, COMBO_END};
 
 
@@ -49,7 +53,8 @@ combo_t key_combos[] = {
     [SD_SPACE] = COMBO(space_combo, KC_SPACE),
     [DF_ENTER] = COMBO(enter_combo, KC_ENTER),
     [KL_BKSP] = COMBO(backspace_combo, KC_BACKSPACE),
-    [SV_SUPER] = COMBO(super_combo, KC_LWIN),
+    [NUM_BKSP] = COMBO(backspace_num_combo, KC_BACKSPACE),
+    [SV_SUPER] = COMBO(super_combo, KC_LWIN)
 };
 //Pro Micro With The Bootloader ATmega32U4 5V/16MHz Module Controller Mega32U4 Leonardo For Arduino
 
@@ -88,32 +93,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+------------+------------+---------+---------|              |--------+--------+---------------+--------------+---------------|
            KC_B, CTL_T(KC_Z), ALT_T(KC_X),     KC_C,     KC_V,                   KC_N,    KC_M, ALT_T(KC_COMM), CTL_T(KC_DOT),       KC_QUOTE,
     //|--------+------------+------------+---------+---------|              |--------+--------+---------------+--------------+---------------|
-                                               BOOT,  XXXXXXX,                  TALONM, TALONT
+                                            SYMBOLT,  SYMBOLO,                 TALONM,  TALONT
     //                                   `-------------------'              `-----------------'
 
     ),
 
-    [_TALON] = LAYOUT_split_3x5_2(
+    [_SYMBOL] = LAYOUT_split_3x5_2(
     //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_F18, XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_MINS, KC_TAB, QK_BOOT,                 XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX, KC_ENTER,MS_WHLD, MS_WHLU,  KC_F17, //MS WHLD/WHLU refer to mouse wheel down/up respectively
+        KC_LSFT, KC_SLSH, KC_LBRC, KC_RBRC,  KC_GRV,                KC_BSLS,    KC_4,    KC_5,    KC_6,    KC_0,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-      KC_LALT, S(KC_TAB),  KC_TAB, XXXXXXX, XXXXXXX,                XXXXXXX, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
+        XXXXXXX, KC_HOME,  KC_END,  KC_EQL, XXXXXXX,                 KC_DOT,    KC_1,    KC_2,    KC_3, XXXXXXX,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-                                   XXXXXXX, XXXXXXX,                _______, _______
+                                   _______, _______,                XXXXXXX, XXXXXXX
     //                           `-----------------'              `-----------------'
     ),
 
-    [_BOOT] = LAYOUT_split_3x5_2(
-    //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-                                   _______, XXXXXXX,                XXXXXXX, XXXXXXX
+
+    [_TALON] = LAYOUT_split_3x5_2(
+    //,--------+--------+--------+--------+--------.              ,--------+------------------+----------------+--------+--------.
+        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_F18, XXXXXXX,
+    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
+      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX,          KC_ENTER,         MS_WHLD, MS_WHLU,  KC_F17,
+    //         +        +        +        +        |              |        +                  +        MS WHLD/WHLU refer to mouse wheel down/up respectively
+    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
+      KC_LALT, S(KC_TAB),  KC_TAB, XXXXXXX, XXXXXXX,                XXXXXXX,           KC_LEFT,         KC_DOWN,   KC_UP, KC_RIGHT,
+    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
+                                   XXXXXXX, XXXXXXX,                _______, _______
     //                           `-----------------'              `-----------------'
     )
 };
