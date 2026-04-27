@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL] = LAYOUT_split_3x5_2(
     //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-        XXXXXXX, XXXXXXX, KC_MINS, KC_TAB, QK_BOOT,                 XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,
+        XXXXXXX,  KC_DEL, KC_MINS,  KC_TAB, QK_BOOT,                 XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
         KC_LSFT, KC_SLSH, KC_LBRC, KC_RBRC,  KC_GRV,                KC_BSLS,    KC_4,    KC_5,    KC_6,    KC_0,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
@@ -112,15 +112,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     [_TALON] = LAYOUT_split_3x5_2(
-    //,--------+--------+--------+--------+--------.              ,--------+------------------+----------------+--------+--------.
-        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, KC_F18, XXXXXXX,
-    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
-      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX,          KC_ENTER,         MS_WHLD, MS_WHLU,  KC_F17,
-    //         +        +        +        +        |              |        +                  +        MS WHLD/WHLU refer to mouse wheel down/up respectively
-    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
-      KC_LALT, S(KC_TAB),  KC_TAB, XXXXXXX, XXXXXXX,                XXXXXXX,           KC_LEFT,         KC_DOWN,   KC_UP, KC_RIGHT,
-    //|--------+--------+--------+--------+--------|              |--------+------------------+----------------+--------+--------.
-                                   XXXXXXX, XXXXXXX,                _______, _______
+    //,--------+--------+--------+--------+--------.              ,--------+---------+------------------+----------------+--------.
+        XXXXXXX,  DELEFT, DERIGHT, XXXXXXX, XXXXXXX,                XXXXXXX,  XXXXXXX, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, XXXXXXX,
+    //|--------+--------+--------+--------+--------|              |--------+---------+------------------+----------------+--------.
+      A(KC_TAB), WINLEFT, WINRGHT,  KC_F13, XXXXXXX,                XXXXXXX, KC_ENTER,           MS_WHLD,         MS_WHLU,  KC_F17,
+    //         +        +        +        +        |              |        +                          MS WHLD/WHLU refer to mouse wheel down/up respectively
+    //|--------+--------+--------+--------+--------|              |--------+---------+------------------+----------------+--------.
+      KC_LALT, S(KC_TAB),  KC_TAB, XXXXXXX, XXXXXXX,                XXXXXXX,  KC_LEFT,           KC_DOWN,           KC_UP, KC_RIGHT,
+    //|--------+--------+--------+--------+--------|              |--------+---------+------------------+----------------+--------.
+                                   XXXXXXX, XXXXXXX,                _______,  _______
     //                           `-----------------'              `-----------------'
     )
 };
