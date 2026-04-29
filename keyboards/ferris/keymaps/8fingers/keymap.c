@@ -72,8 +72,7 @@ in your keyboard you use TD(TAP_DANCE_NAME)
 */
 
 enum tap_dance_actions {
-    QESC,
-
+    QESC
 };
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -100,11 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL] = LAYOUT_split_3x5_2(
     //,--------+--------+--------+--------+--------.              ,--------+--------+--------+--------+--------.
-        XXXXXXX,  KC_DEL, KC_MINS,  KC_TAB, QK_BOOT,                 XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,
+        KC_CAPS,  KC_DEL, KC_MINS,  KC_TAB, QK_BOOT,                XXXXXXX,   KC_7,    KC_8,    KC_9, XXXXXXX,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
         KC_LSFT, KC_SLSH, KC_LBRC, KC_RBRC,  KC_GRV,                KC_BSLS,    KC_4,    KC_5,    KC_6,    KC_0,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
-        XXXXXXX, KC_HOME,  KC_END,  KC_EQL, XXXXXXX,                 KC_DOT,    KC_1,    KC_2,    KC_3, XXXXXXX,
+        XXXXXXX, KC_HOME,  KC_END,  KC_EQL, CW_TOGG,                KC_DOT,    KC_1,    KC_2,    KC_3, XXXXXXX,
     //|--------+--------+--------+--------+--------|              |--------+--------+--------+--------+--------|
                                    _______, _______,                XXXXXXX, XXXXXXX
     //                           `-----------------'              `-----------------'
